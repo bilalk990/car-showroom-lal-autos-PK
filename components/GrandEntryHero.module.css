@@ -1,0 +1,174 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+/* ── Background ── */
+.bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.bgVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.bgOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(5,5,5,0.2) 0%,
+    rgba(5,5,5,0.0) 40%,
+    rgba(5,5,5,0.5) 100%
+  );
+}
+
+.neonGlow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 55% 50% at 50% 58%,
+    rgba(255,0,0,0.25) 0%,
+    rgba(255,0,0,0.07) 45%,
+    transparent 70%
+  );
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Curtains ── */
+.curtains {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: row;
+  pointer-events: none;
+}
+
+.panel {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  will-change: transform;
+  flex-shrink: 0;
+  overflow: hidden; /* Hide the overflow of the split image */
+}
+
+.panelLeft {
+  transform-origin: left center;
+}
+
+.panelRight {
+  transform-origin: right center;
+}
+
+.panelImg {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  min-width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  max-width: none;
+  pointer-events: none;
+}
+
+
+/* ── Brand text ── */
+.brand {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  gap: 0.75rem;
+  padding: 0 1rem;
+}
+
+.brandName {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.4rem, 7vw, 8.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #ffffff;
+  mix-blend-mode: difference;
+  white-space: nowrap;
+  will-change: letter-spacing, opacity;
+  text-align: center;
+}
+
+.brandSub {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 400;
+  font-size: clamp(0.5rem, 1.1vw, 0.8rem);
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  mix-blend-mode: difference;
+  opacity: 0;
+  text-align: center;
+}
+
+/* ── Scroll hint ── */
+.scrollHint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.scrollHintLine {
+  width: 1px;
+  height: 44px;
+  background: linear-gradient(to bottom, rgba(255,0,0,0.9), transparent);
+  animation: scrollPulse 1.8s ease-in-out infinite;
+}
+
+.scrollHintText {
+  font-size: 0.5rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+  50%       { opacity: 1;   transform: scaleY(1); }
+}
+
+/* ── Mobile: keep horizontal split ── */
+@media (max-width: 768px) {
+  .brandName {
+    font-size: clamp(1.8rem, 9vw, 3.5rem);
+    white-space: normal;
+  }
+
+  .brandSub {
+    font-size: clamp(0.45rem, 2.5vw, 0.7rem);
+    letter-spacing: 0.3em;
+  }
+}
