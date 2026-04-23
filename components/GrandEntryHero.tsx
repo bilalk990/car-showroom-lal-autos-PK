@@ -8,13 +8,15 @@ const BG_VIDEO = "/car-video.mp4";
 
 export default function GrandEntryHero() {
   const [mounted, setMounted] = useState(false);
-  const wrapperRef    = useRef<HTMLDivElement>(null);
-  const leftPanelRef  = useRef<HTMLDivElement>(null);
-  const rightPanelRef = useRef<HTMLDivElement>(null);
-  const brandNameRef  = useRef<HTMLHeadingElement>(null);
-  const brandSubRef   = useRef<HTMLParagraphElement>(null);
-  const neonGlowRef   = useRef<HTMLDivElement>(null);
-  const scrollHintRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.defaultMuted = true;
+      videoRef.current.muted = true;
+      videoRef.current.play().catch(() => {});
+    }
+  }, []);
 
   useEffect(() => {
     setMounted(true);
@@ -77,7 +79,7 @@ export default function GrandEntryHero() {
         {/* Background */}
         <div className={styles.bg}>
           <video
-            src={BG_VIDEO}
+            ref={videoRef}
             autoPlay
             muted
             loop
@@ -85,7 +87,9 @@ export default function GrandEntryHero() {
             webkit-playsinline="true"
             preload="auto"
             className={styles.bgVideo}
-          />
+          >
+            <source src={BG_VIDEO} type="video/mp4" />
+          </video>
           <div className={styles.bgOverlay} />
           <div ref={neonGlowRef} className={styles.neonGlow} />
         </div>
