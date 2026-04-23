@@ -9,6 +9,13 @@ const BG_VIDEO = "/car-video.mp4";
 export default function GrandEntryHero() {
   const [mounted, setMounted] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const wrapperRef    = useRef<HTMLDivElement>(null);
+  const leftPanelRef  = useRef<HTMLDivElement>(null);
+  const rightPanelRef = useRef<HTMLDivElement>(null);
+  const brandNameRef  = useRef<HTMLHeadingElement>(null);
+  const brandSubRef   = useRef<HTMLParagraphElement>(null);
+  const neonGlowRef   = useRef<HTMLDivElement>(null);
+  const scrollHintRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (videoRef.current) {
