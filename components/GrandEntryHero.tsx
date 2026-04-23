@@ -82,6 +82,8 @@ export default function GrandEntryHero() {
             muted
             loop
             playsInline
+            webkit-playsinline="true"
+            preload="auto"
             className={styles.bgVideo}
           />
           <div className={styles.bgOverlay} />
